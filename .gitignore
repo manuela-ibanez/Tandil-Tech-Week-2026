@@ -10,6 +10,20 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+*.log
+.npm/
+.pnpm-store/
+
+# Local environment variables (keep example files)
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# TypeScript and tooling caches
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
 
 # IDEs and editors
 .idea/
@@ -42,3 +56,4 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+Desktop.ini

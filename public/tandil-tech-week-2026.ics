@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Tandil Tech Week Concept//Event dates//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ttw2026-hacking@tandiltechweek.com
+DTSTAMP:20261014T000000Z
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261015
+SUMMARY:Tandil Tech Week - Hacking Day
+LOCATION:Campus Universitario UNICEN\, Tandil\, Argentina
+DESCRIPTION:Competencia de ciberseguridad en equipos. Consultar horarios
+  e inscripciones en https://www.tandiltechweek.com/
+URL:https://www.tandiltechweek.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:ttw2026-startup@tandiltechweek.com
+DTSTAMP:20261014T000000Z
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261016
+SUMMARY:Tandil Tech Week - Startup Day
+LOCATION:Distrito Avellaneda\, Tandil\, Argentina
+DESCRIPTION:Charlas y networking. Consultar horarios e inscripciones
+  en https://www.tandiltechweek.com/
+URL:https://www.tandiltechweek.com/
+END:VEVENT
+END:VCALENDAR
