@@ -26,6 +26,7 @@ export class App implements AfterViewInit, OnDestroy {
   protected readonly activeDay = signal(0);
   protected readonly day = computed(() => DAYS[this.activeDay()]);
   protected readonly activeCommunityTab = signal<'organizers' | 'sponsors'>('organizers');
+  protected readonly questionFormSubmitted = signal(false);
   protected readonly currentMission = signal(0);
   protected readonly mission = computed(() => MISSIONS[this.currentMission()]);
   protected readonly solved = signal<string[]>([]);
@@ -177,6 +178,15 @@ export class App implements AfterViewInit, OnDestroy {
     this.currentMission.set(index);
     this.answer.set('');
     this.feedback.set('');
+  }
+
+  protected submitQuestion(form: HTMLFormElement): void {
+    const question = form.querySelector<HTMLTextAreaElement>('#visitor-question');
+    if (!question) return;
+    question.setCustomValidity(question.value.trim() ? '' : 'Escribí una pregunta antes de continuar.');
+    if (!form.reportValidity()) return;
+    form.reset();
+    this.questionFormSubmitted.set(true);
   }
 
   protected submitAnswer(value = this.answer()): void {

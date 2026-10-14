@@ -194,8 +194,25 @@
 .sponsor-role { font-size: 9px; text-transform: uppercase; color: #a9b49a; }
 .community-source { font-size: 10px; color: #a9b49a; margin-top: 20px; }
 .community-source a { text-decoration: underline; text-underline-offset: 3px; }
-.faq { display: grid; grid-template-columns: .9fr 1.1fr; gap: 84px; }
+.faq { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 84px; align-items: start; }
 .faq-heading .eyebrow { margin-bottom: 34px; }
+.question-form { display: grid; gap: 18px; margin-top: 36px; padding: 24px; background: var(--surface); border: 1px solid #3c4432; }
+.question-form-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.question-form-heading h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.04em; }
+.question-demo { padding: 3px 7px; border: 1px solid #53663a; color: var(--lime); font-size: 8px; letter-spacing: .08em; }
+.question-form-note { font-size: 12px; line-height: 1.6; color: var(--muted); }
+.question-form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.question-field { display: grid; gap: 8px; min-width: 0; }
+.question-field label { font-size: 12px; }
+.question-field label span { font-size: 10px; color: var(--muted); }
+.question-field input, .question-field textarea { width: 100%; min-width: 0; padding: 12px; border: 1px solid #485238; border-radius: 0; background: var(--bg); color: var(--text); font: inherit; font-size: 13px; transition: border-color .2s; }
+.question-field input::placeholder, .question-field textarea::placeholder { color: #8c9481; }
+.question-field input:hover, .question-field textarea:hover { border-color: #677b44; }
+.question-field input:focus, .question-field textarea:focus { border-color: var(--lime); }
+.question-field textarea { resize: vertical; min-height: 120px; max-height: 360px; }
+.question-form .button { width: 100%; }
+.question-form-feedback { color: var(--lime); font-size: 12px; line-height: 1.6; }
+.question-form-feedback.is-visible { margin-top: 16px; padding: 14px 16px; border: 1px solid #53663a; background: #1b2613; }
 .faq-list details { border-top: 1px solid var(--line); }
 .faq-list details:last-child { border-bottom: 1px solid var(--line); }
 .faq-list summary { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding-block: 24px; font-size: 14px; list-style: none; }
@@ -245,6 +262,7 @@
   .community-heading { gap: 40px; }
   .sponsor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .faq { gap: 48px; }
+  .question-form-fields { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
   .header { padding-inline: 20px; height: 68px; gap: 12px; }
@@ -317,6 +335,8 @@
   .sponsor-role { font-size: 8px; }
   .faq { grid-template-columns: 1fr; gap: 32px; }
   .faq-heading .eyebrow { margin-bottom: 24px; }
+  .question-form { margin-top: 28px; padding: 20px 18px; }
+  .question-form-heading h3 { font-size: 20px; }
   .faq-list summary { font-size: 13px; padding-block: 20px; }
   .closing { padding-block: 28px; }
   .closing-top { font-size: 8px; }
