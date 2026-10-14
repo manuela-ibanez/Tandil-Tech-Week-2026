@@ -78,28 +78,36 @@
         <div class="section-top" data-reveal><p class="eyebrow"><span class="section-index">04 /</span> QUIENES LO HACEN POSIBLE</p><span class="mono section-note">EL FUTURO NO SE CONSTRUYE A SOLAS</span></div>
         <div class="community-heading" data-reveal><h2 id="community-title">Distintas miradas.<br><em>La misma energía.</em></h2><p>Organizaciones que construyen el encuentro y sponsors que lo acompañan. Cada uno aporta a las conexiones que vienen.</p></div>
 
-        <div class="community-group" role="group" aria-labelledby="organizations-title">
-          <div class="community-group-heading" data-reveal><h3 id="organizations-title">Organizaciones</h3><p>El equipo detrás del encuentro.</p></div>
-          <div class="organizer-grid">
-            @for (organizer of organizers; track organizer.name) {
-              <a class="organizer" data-reveal [href]="organizer.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Conocer a ' + organizer.name">
-                <span class="organizer-mark" [class.mono]="organizer.name === 'Hack Tandil'">{{ organizer.mark }}</span>
-                <span class="organizer-bottom"><span class="mono">{{ organizer.role }}</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></span>
-              </a>
-            }
-          </div>
+        <div class="community-tabs" data-reveal role="tablist" aria-label="Organizaciones y sponsors del encuentro">
+          <button id="community-tab-organizers" type="button" role="tab" aria-controls="community-panel" [attr.aria-selected]="activeCommunityTab() === 'organizers'" [attr.tabindex]="activeCommunityTab() === 'organizers' ? 0 : -1" [class.selected]="activeCommunityTab() === 'organizers'" (click)="activeCommunityTab.set('organizers')" (keydown)="switchCommunityTab($event)">
+            <span>Organizaciones</span><span class="community-tab-count mono" aria-hidden="true">0{{ organizers.length }}</span>
+          </button>
+          <button id="community-tab-sponsors" type="button" role="tab" aria-controls="community-panel" [attr.aria-selected]="activeCommunityTab() === 'sponsors'" [attr.tabindex]="activeCommunityTab() === 'sponsors' ? 0 : -1" [class.selected]="activeCommunityTab() === 'sponsors'" (click)="activeCommunityTab.set('sponsors')" (keydown)="switchCommunityTab($event)">
+            <span>Sponsors</span><span class="community-tab-count mono" aria-hidden="true">0{{ sponsors.length }}</span>
+          </button>
         </div>
 
-        <div class="community-group sponsors-group" role="group" aria-labelledby="sponsors-title">
-          <div class="community-group-heading" data-reveal><h3 id="sponsors-title">Sponsors</h3><p>Las marcas que apoyan esta edición.</p></div>
-          <div class="sponsor-grid">
-            @for (sponsor of sponsors; track sponsor.name) {
-              <article class="sponsor-card" data-reveal [attr.aria-label]="sponsor.name + ', ' + sponsor.role">
-                <span class="sponsor-mark">{{ sponsor.mark }}</span>
-                <span class="sponsor-role mono">{{ sponsor.role }}</span>
-              </article>
-            }
-          </div>
+        <div id="community-panel" class="community-panel" data-reveal role="tabpanel" [attr.aria-labelledby]="'community-tab-' + activeCommunityTab()" tabindex="0">
+          <p class="community-panel-note">{{ activeCommunityTab() === 'organizers' ? 'El equipo detrás del encuentro.' : 'Las marcas que apoyan esta edición.' }}</p>
+          @if (activeCommunityTab() === 'organizers') {
+            <div class="organizer-grid">
+              @for (organizer of organizers; track organizer.name) {
+                <a class="organizer" [href]="organizer.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Conocer a ' + organizer.name">
+                  <span class="organizer-mark" [class.mono]="organizer.name === 'Hack Tandil'">{{ organizer.mark }}</span>
+                  <span class="organizer-bottom"><span class="mono">{{ organizer.role }}</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></span>
+                </a>
+              }
+            </div>
+          } @else {
+            <div class="sponsor-grid">
+              @for (sponsor of sponsors; track sponsor.name) {
+                <article class="sponsor-card" [attr.aria-label]="sponsor.name + ', ' + sponsor.role">
+                  <span class="sponsor-mark">{{ sponsor.mark }}</span>
+                  <span class="sponsor-role mono">{{ sponsor.role }}</span>
+                </article>
+              }
+            </div>
+          }
         </div>
 
         <p class="community-source" data-reveal>Más información del encuentro en el sitio del <a [href]="eventSource" target="_blank" rel="noopener noreferrer">Clúster Tecnológico Tandil ↗</a>.</p>

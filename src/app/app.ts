@@ -25,6 +25,7 @@ export class App implements AfterViewInit, OnDestroy {
   protected readonly activeSection = signal('inicio');
   protected readonly activeDay = signal(0);
   protected readonly day = computed(() => DAYS[this.activeDay()]);
+  protected readonly activeCommunityTab = signal<'organizers' | 'sponsors'>('organizers');
   protected readonly currentMission = signal(0);
   protected readonly mission = computed(() => MISSIONS[this.currentMission()]);
   protected readonly solved = signal<string[]>([]);
@@ -161,6 +162,15 @@ export class App implements AfterViewInit, OnDestroy {
     const index = event.key === 'Home' ? 0 : event.key === 'End' ? 1 : 1 - this.activeDay();
     this.selectDay(index);
     this.root.nativeElement.querySelector<HTMLButtonElement>(`#day-tab-${index}`)?.focus();
+  }
+
+  protected switchCommunityTab(event: KeyboardEvent): void {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const tab = event.key === 'Home' ? 'organizers' : event.key === 'End' ? 'sponsors'
+      : this.activeCommunityTab() === 'organizers' ? 'sponsors' : 'organizers';
+    this.activeCommunityTab.set(tab);
+    this.root.nativeElement.querySelector<HTMLButtonElement>(`#community-tab-${tab}`)?.focus();
   }
 
   protected selectMission(index: number): void {
